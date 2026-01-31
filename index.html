@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kowloon Kitchen | Authentic Hong Kong Cuisine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #c62828;
+            --secondary: #ff9800;
+            --accent: #ffeb3b;
+            --dark: #1a237e;
+            --light: #f5f5f5;
+            --gold: #ffd700;
+            --success: #4caf50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 2rem;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 100px) rotate(360deg); }
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #283593 100%);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: logoPulse 3s infinite alternate;
+        }
+
+        @keyframes logoPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .logo-icon {
+            background-color: var(--primary);
+            color: var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 0 15px rgba(198, 40, 40, 0.5);
+        }
+
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .main-nav {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 10px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--primary);
+            color: white;
+            font-size: 12px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            color: var(--accent);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: #f0f0f0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #d32f2f 100%);
+            color: white;
+            box-shadow: 0 5px 20px rgba(198, 40, 40, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(198, 40, 40, 0.6);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--dark);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .menu-tab {
+            padding: 12px 30px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #555;
+        }
+
+        .menu-tab.active, .menu-tab:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .menu-item.animate {
+            animation: itemAppear 0.6s forwards;
+        }
+
+        @keyframes itemAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .item-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .menu-item:hover .item-image img {
+            transform: scale(1.1);
+        }
+
+        .item-content {
+            padding: 25px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .item-title h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .tag.hot {
+            background-color: #ffebee;
+            color: var(--primary);
+        }
+
+        .tag.new {
+            background-color: #e8f5e9;
+            color: var(--success);
+        }
+
+        .tag.veg {
+            background-color: #f1f8e9;
+            color: #689f38;
+        }
+
+        .item-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .item-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f5f5f5;
+            border-radius: 50px;
+            padding: 8px 20px;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .qty-btn:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .quantity {
+            font-weight: 600;
+            font-size: 1.2rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #b71c1c;
+            transform: scale(1.05);
+        }
+
+        /* Order Panel */
+        .order-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            transition: right 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .order-panel.active {
+            right: 0;
+        }
+
+        .order-header {
+            background-color: var(--dark);
+            color: white;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-header h3 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-order {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-order:hover {
+            transform: rotate(90deg);
+        }
+
+        .order-body {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .order-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .order-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .remove-item:hover {
+            color: var(--primary);
+        }
+
+        .order-footer {
+            padding: 25px;
+            border-top: 1px solid #eee;
+            background-color: #fafafa;
+        }
+
+        .order-summary {
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .summary-row.total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .order-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .order-btn {
+            padding: 18px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .order-btn.checkout {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .order-btn.checkout:hover {
+            background-color: #388e3c;
+            transform: translateY(-3px);
+        }
+
+        .order-btn.delivery {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .order-btn.delivery:hover {
+            background-color: #f57c00;
+            transform: translateY(-3px);
+        }
+
+        /* Delivery Info */
+        .delivery-section {
+            padding: 100px 0;
+            background-color: #f5f5f5;
+        }
+
+        .delivery-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .delivery-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: rotate(-3deg);
+            transition: transform 0.5s;
+        }
+
+        .delivery-image:hover {
+            transform: rotate(0deg);
+        }
+
+        .delivery-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .delivery-content {
+            flex: 1;
+        }
+
+        .delivery-content h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .delivery-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s;
+        }
+
+        .step.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #ccc;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .delivery-container {
+                flex-direction: column;
+            }
+            
+            .delivery-image {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                gap: 20px;
+            }
+            
+            .main-nav {
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .order-panel {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .main-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                height: 70vh;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-panel {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .menu-tab {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .item-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .item-price {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-element" style="top:10%; left:5%;"><i class="fas fa-utensils"></i></div>
+        <div class="floating-element" style="top:20%; left:90%;"><i class="fas fa-bowl-food"></i></div>
+        <div class="floating-element" style="top:70%; left:85%;"><i class="fas fa-drumstick-bite"></i></div>
+        <div class="floating-element" style="top:80%; left:10%;"><i class="fas fa-mug-hot"></i></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-dragon"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>KOWLOON KITCHEN</h1>
+                    <p>AUTHENTIC HONG KONG CUISINE</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#delivery">Delivery</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count">0</div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>RASA AUTENTIK HONG KONG DI INDONESIA</h1>
+                <p>Nikmati cita rasa tradisional Hong Kong dengan sentuhan modern. Dim sum handmade, mie spesial, dan hidangan klasik Kowloon yang dibuat oleh chef berpengalaman langsung dari Hong Kong.</p>
+                <div class="cta-buttons">
+                    <a href="#menu" class="btn btn-primary">
+                        <i class="fas fa-utensils"></i> LIHAT MENU
+                    </a>
+                    <a href="#delivery" class="btn btn-secondary">
+                        <i class="fas fa-motorcycle"></i> ORDER DELIVERY
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>MENU SPESIAL KAMI</h2>
+                <p>Jelajahi kelezatan masakan Hong Kong yang autentik dengan bahan-bahan pilihan berkualitas tinggi</p>
+            </div>
+            
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-category="all">Semua Menu</button>
+                <button class="menu-tab" data-category="dimsum">Dim Sum</button>
+                <button class="menu-tab" data-category="noodle">Mie & Pangsit</button>
+                <button class="menu-tab" data-category="rice">Nasi & Rice Bowl</button>
+                <button class="menu-tab" data-category="drink">Minuman</button>
+            </div>
+            
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Section -->
+    <section class="delivery-section" id="delivery">
+        <div class="container">
+            <div class="delivery-container">
+                <div class="delivery-image">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food Delivery">
+                </div>
+                <div class="delivery-content">
+                    <h2>Nikmati Makanan Kami Di Mana Saja</h2>
+                    <p>Pesan makanan Hong Kong favorit Anda dan kami akan antar langsung ke depan pintu Anda. Dengan layanan delivery cepat dan aman.</p>
+                    
+                    <div class="delivery-steps">
+                        <div class="step" id="step1">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Pilih Menu Favorit</h4>
+                                <p>Telusuri menu lengkap kami dan pilih hidangan Hong Kong favorit Anda.</p>
+                            </div>
+                        </div>
+                        <div class="step" id="step2">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Checkout & Bayar</h4>
+                                <p>Pilih metode pembayaran yang nyaman: transfer bank, e-wallet, atau COD.</p>
+                            </div>
+                        </div>
+                        <div class="step" id="step3">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Tunggu Pengiriman</h4>
+                                <p>Makanan Anda akan diantar dalam waktu 30-45 menit oleh kurir kami.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#menu" class="btn btn-primary" style="display: inline-flex;">
+                        <i class="fas fa-shopping-bag"></i> ORDER SEKARANG
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Kowloon Kitchen</h3>
+                    <p>Restoran Hong Kong autentik pertama di Indonesia yang menghadirkan cita rasa tradisional dengan kualitas terbaik dan pelayanan premium.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Menu Populer</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Har Gao (Udang)</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Siu Mai Babi & Udang</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Char Siu Bao</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Wanton Mie</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Roast Duck Rice</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Jam Operasional</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <p><strong>Senin - Jumat</strong></p>
+                                <p>10:00 - 22:00 WIB</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <p><strong>Sabtu - Minggu</strong></p>
+                                <p>09:00 - 23:00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak & Lokasi</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p><strong>Alamat</strong></p>
+                                <p>Jl. Sudirman No. 123, Jakarta Pusat</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p><strong>Telepon</strong></p>
+                                <p>(021) 1234-5678</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p><strong>Email</strong></p>
+                                <p>info@kowloonkitchen.id</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kowloon Kitchen - Authentic Hong Kong Cuisine. All Rights Reserved.</p>
+                <p style="margin-top: 10px;">Website by Restaurant Development Team</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Panel -->
+    <div class="order-panel" id="orderPanel">
+        <div class="order-header">
+            <h3><i class="fas fa-shopping-cart"></i> Pesanan Anda</h3>
+            <button class="close-order" id="closeOrder">&times;</button>
+        </div>
+        
+        <div class="order-body" id="orderBody">
+            <!-- Order items will be loaded here -->
+            <div id="emptyCart" style="text-align: center; padding: 50px 20px; color: #888;">
+                <i class="fas fa-shopping-cart" style="font-size: 4rem; margin-bottom: 20px; opacity: 0.3;"></i>
+                <h3>Keranjang Masih Kosong</h3>
+                <p>Tambahkan beberapa menu favorit Anda dari katalog kami</p>
+            </div>
+        </div>
+        
+        <div class="order-footer">
+            <div class="order-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">Rp 0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Biaya Pengiriman</span>
+                    <span id="deliveryFee">Rp 15.000</span>
+                </div>
+                <div class="summary-row">
+                    <span>Pajak (10%)</span>
+                    <span id="tax">Rp 0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="total">Rp 15.000</span>
+                </div>
+            </div>
+            
+            <div class="order-actions">
+                <a href="#" class="order-btn checkout" id="checkoutBtn">
+                    <i class="fas fa-credit-card"></i> LANJUT PEMBAYARAN
+                </a>
+                <a href="#" class="order-btn delivery">
+                    <i class="fas fa-motorcycle"></i> PESAN DELIVERY
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu Data
+        const menuItems = [
+            {
+                id: 1,
+                name: "Har Gao (Udang)",
+                category: "dimsum",
+                description: "Dim sum udang segar dengan kulit transparan yang kenyal, dibuat langsung oleh chef kami.",
+                price: 45000,
+                image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["hot", "best"],
+                quantity: 0
+            },
+            {
+                id: 2,
+                name: "Siu Mai Babi & Udang",
+                category: "dimsum",
+                description: "Perpaduan daging babi cincang dan udang segar dengan kulit tipis yang lembut.",
+                price: 40000,
+                image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["new", "best"],
+                quantity: 0
+            },
+            {
+                id: 3,
+                name: "Char Siu Bao",
+                category: "dimsum",
+                description: "Roti steamed dengan isian daging babi panggang manis khas Hong Kong.",
+                price: 35000,
+                image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["veg"],
+                quantity: 0
+            },
+            {
+                id: 4,
+                name: "Wanton Mie",
+                category: "noodle",
+                description: "Mie telur dengan pangsit udang dalam kaldu ayam yang gurih, disajikan panas.",
+                price: 65000,
+                image: "https://images.unsplash.com/photo-1557872943-16a5ac26437e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["hot"],
+                quantity: 0
+            },
+            {
+                id: 5,
+                name: "Beef Brisket Noodle",
+                category: "noodle",
+                description: "Mie dengan daging sapi brisket yang empuk dalam kuah kaldu sapi kental.",
+                price: 75000,
+                image: "https://images.unsplash.com/photo-1612927601601-6638404737ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["best"],
+                quantity: 0
+            },
+            {
+                id: 6,
+                name: "Roast Duck Rice",
+                category: "rice",
+                description: "Nasi putih dengan bebek panggang khas Hong Kong yang renyah dan lembut.",
+                price: 85000,
+                image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["hot", "best"],
+                quantity: 0
+            },
+            {
+                id: 7,
+                name: "Claypot Rice",
+                category: "rice",
+                description: "Nasi dimasak dalam claypot dengan chicken mushroom dan saus spesial.",
+                price: 70000,
+                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["new"],
+                quantity: 0
+            },
+            {
+                id: 8,
+                name: "Milk Tea Hong Kong",
+                category: "drink",
+                description: "Teh susu khas Hong Kong dengan rasa creamy dan aroma teh yang kuat.",
+                price: 25000,
+                image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["veg"],
+                quantity: 0
+            },
+            {
+                id: 9,
+                name: "Lemon Tea",
+                category: "drink",
+                description: "Teh dengan perasan lemon segar, cocok sebagai pendamping makanan.",
+                price: 20000,
+                image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: [],
+                quantity: 0
+            }
+        ];
+
+        // Cart Data
+        let cart = [];
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCount = cartIcon.querySelector('.cart-count');
+        const orderPanel = document.getElementById('orderPanel');
+        const closeOrderBtn = document.getElementById('closeOrder');
+        const orderBody = document.getElementById('orderBody');
+        const emptyCart = document.getElementById('emptyCart');
+        const subtotalEl = document.getElementById('subtotal');
+        const taxEl = document.getElementById('tax');
+        const totalEl = document.getElementById('total');
+        const deliveryFee = 15000;
+
+        // Initialize menu
+        function initializeMenu() {
+            const menuGrid = document.getElementById('menuGrid');
+            menuGrid.innerHTML = '';
+            
+            menuItems.forEach((item, index) => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.dataset.id = item.id;
+                menuItem.dataset.category = item.category;
+                
+                // Add tags HTML
+                let tagsHtml = '';
+                item.tags.forEach(tag => {
+                    tagsHtml += `<span class="tag ${tag}">${tag.toUpperCase()}</span>`;
+                });
+                
+                menuItem.innerHTML = `
+                    <div class="item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-header">
+                            <div class="item-title">
+                                <h3>${item.name}</h3>
+                                <div class="item-tags">
+                                    ${tagsHtml}
+                                </div>
+                            </div>
+                            <div class="item-price">Rp ${item.price.toLocaleString()}</div>
+                        </div>
+                        <p class="item-description">${item.description}</p>
+                        <div class="item-footer">
+                            <div class="quantity-selector">
+                                <button class="qty-btn decrease" data-id="${item.id}">-</button>
+                                <span class="quantity" data-id="${item.id}">0</span>
+                                <button class="qty-btn increase" data-id="${item.id}">+</button>
+                            </div>
+                            <button class="add-to-cart" data-id="${item.id}">
+                                <i class="fas fa-cart-plus"></i> Tambah
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                menuGrid.appendChild(menuItem);
+                
+                // Animate item appearance
+                setTimeout(() => {
+                    menuItem.classList.add('animate');
+                }, index * 100);
+            });
+            
+            // Add event listeners to menu items
+            attachMenuEvents();
+        }
+
+        // Attach events to menu items
+        function attachMenuEvents() {
+            // Quantity buttons
+            document.querySelectorAll('.qty-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    const isIncrease = this.classList.contains('increase');
+                    const isDecrease = this.classList.contains('decrease');
+                    const item = menuItems.find(item => item.id === id);
+                    
+                    if (isIncrease) {
+                        item.quantity++;
+                        updateQuantityDisplay(id, item.quantity);
+                    } else if (isDecrease && item.quantity > 0) {
+                        item.quantity--;
+                        updateQuantityDisplay(id, item.quantity);
+                    }
+                });
+            });
+            
+            // Add to cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    const item = menuItems.find(item => item.id === id);
+                    
+                    if (item.quantity > 0) {
+                        addToCart(item);
+                        item.quantity = 0;
+                        updateQuantityDisplay(id, 0);
+                    } else {
+                        // If quantity is 0, set to 1 and add
+                        item.quantity = 1;
+                        updateQuantityDisplay(id, 1);
+                        addToCart(item);
+                        item.quantity = 0;
+                        updateQuantityDisplay(id, 0);
+                    }
+                });
+            });
+        }
+
+        // Update quantity display
+        function updateQuantityDisplay(id, quantity) {
+            const quantityDisplay = document.querySelector(`.quantity[data-id="${id}"]`);
+            if (quantityDisplay) {
+                quantityDisplay.textContent = quantity;
+            }
+        }
+
+        // Add item to cart
+        function addToCart(item) {
+            const existingItem = cart.find(cartItem => cartItem.id === item.id);
+            
+            if (existingItem) {
+                existingItem.quantity += item.quantity || 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity || 1
+                });
+            }
+            
+            updateCart();
+            
+            // Show success animation
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                cartIcon.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Update cart display
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update order panel
+            updateOrderPanel();
+            
+            // Update totals
+            updateTotals();
+        }
+
+        // Update order panel
+        function updateOrderPanel() {
+            if (cart.length === 0) {
+                emptyCart.style.display = 'block';
+                orderBody.innerHTML = '';
+                orderBody.appendChild(emptyCart);
+                return;
+            }
+            
+            emptyCart.style.display = 'none';
+            
+            let orderHTML = '';
+            cart.forEach(item => {
+                orderHTML += `
+                    <div class="order-item" data-id="${item.id}">
+                        <div class="order-item-info">
+                            <h4>${item.name}</h4>
+                            <div class="order-item-price">Rp ${item.price.toLocaleString()}</div>
+                        </div>
+                        <div class="order-item-controls">
+                            <div class="quantity-selector" style="background: transparent; padding: 0;">
+                                <button class="qty-btn decrease-order" data-id="${item.id}">-</button>
+                                <span class="quantity" style="min-width: 30px;">${item.quantity}</span>
+                                <button class="qty-btn increase-order" data-id="${item.id}">+</button>
+                            </div>
+                            <button class="remove-item" data-id="${item.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            orderBody.innerHTML = orderHTML;
+            
+            // Attach events to order panel buttons
+            attachOrderPanelEvents();
+        }
+
+        // Attach events to order panel
+        function attachOrderPanelEvents() {
+            // Increase quantity in order panel
+            document.querySelectorAll('.increase-order').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    const item = cart.find(item => item.id === id);
+                    if (item) {
+                        item.quantity++;
+                        updateCart();
+                    }
+                });
+            });
+            
+            // Decrease quantity in order panel
+            document.querySelectorAll('.decrease-order').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    const item = cart.find(item => item.id === id);
+                    if (item && item.quantity > 1) {
+                        item.quantity--;
+                        updateCart();
+                    } else if (item && item.quantity === 1) {
+                        // Remove item if quantity becomes 0
+                        cart = cart.filter(cartItem => cartItem.id !== id);
+                        updateCart();
+                    }
+                });
+            });
+            
+            // Remove item from order panel
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    cart = cart.filter(item => item.id !== id);
+                    updateCart();
+                });
+            });
+        }
+
+        // Update totals
+        function updateTotals() {
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const tax = subtotal * 0.1;
+            const total = subtotal + tax + deliveryFee;
+            
+            subtotalEl.textContent = `Rp ${subtotal.toLocaleString()}`;
+            taxEl.textContent = `Rp ${tax.toLocaleString()}`;
+            totalEl.textContent = `Rp ${total.toLocaleString()}`;
+        }
+
+        // Menu filtering
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                menuTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter menu items
+                const category = this.dataset.category;
+                const menuItems = document.querySelectorAll('.menu-item');
+                
+                menuItems.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Cart icon click
+        cartIcon.addEventListener('click', function() {
+            orderPanel.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close order panel
+        closeOrderBtn.addEventListener('click', function() {
+            orderPanel.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Checkout button
+        document.getElementById('checkoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (cart.length === 0) {
+                alert('Keranjang Anda masih kosong. Silakan tambahkan beberapa item terlebih dahulu.');
+                return;
+            }
+            
+            // Show checkout modal
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 1.1 + deliveryFee;
+            alert(`Checkout berhasil!\n\nTotal pesanan: Rp ${total.toLocaleString()}\n\nPesanan Anda sedang diproses. Terima kasih telah berbelanja di Kowloon Kitchen!`);
+            
+            // Clear cart
+            cart = [];
+            updateCart();
+            orderPanel.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Step animations on scroll
+        function animateStepsOnScroll() {
+            const steps = document.querySelectorAll('.step');
+            const windowHeight = window.innerHeight;
+            
+            steps.forEach(step => {
+                const stepPosition = step.getBoundingClientRect().top;
+                
+                if (stepPosition < windowHeight - 100) {
+                    step.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMenu();
+            
+            // Animate steps on scroll
+            window.addEventListener('scroll', animateStepsOnScroll);
+            animateStepsOnScroll(); // Initial check
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
